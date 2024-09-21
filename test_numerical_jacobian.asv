@@ -4,7 +4,7 @@ function test_numerical_jacobian()
     %iterate num_tests times
     for n = 1:num_tests
         %generate a matrix, A, of random size populated with random values
-        A_width = randi([1,15]);
+        A_width = randi([1,15])
         A_height = randi([1,15]);
         A = randn(A_height,A_width);
         %generate a vector, B, same height as A, random values inside
