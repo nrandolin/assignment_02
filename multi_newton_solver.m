@@ -22,7 +22,7 @@ B_thresh = 10e-14;
     if use_analytical_jacobian == false
     [f_val, J] = fun(x_guess);
     x_next = x_guess;
-        while abs(J\f_val)> A_thresh && abs(f_val)>B_thresh && abs(det(J*J')) > 1e-14
+        while max(abs(J\f_val))> A_thresh && max(abs(f_val))>B_thresh && abs(det(J*J')) > 1e-14
             %calculate next x
             x_next = x_next - J\f_val;
             %establish next y value
