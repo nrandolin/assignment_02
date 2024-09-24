@@ -12,21 +12,31 @@ function update_leg_drawing(complete_vertex_coords, leg_drawing, leg_params)
     %iterate through each link, and update corresponding link plot
     for linkage_index = 1:leg_params.num_linkages
         %linkage_index is the label of the current link
-        %your code here
+        va = leg_params.link_to_vertex_list(i,1);
+        vb = leg_params.link_to_vertex_list(i,2);
+        xa = vertex_coords(2*va-1);
+        ya = vertex_coords(2*va);
+        xb = vertex_coords(2*vb-1);
+        yb = vertex_coords(2*vb);
         %line_x and line_y should both be two element arrays containing
         %the x and y coordinates of the line segment describing the current link
-        line_x = %your code here
-        line_y = %your code here
+        line_x = [xa, xb]
+        line_y = [ya, yb]
         set(leg_drawing.linkages{linkage_index},'xdata',line_x,'ydata',line_y);
     end
     %iterate through each vertex, and update corresponding vertex plot
     for vertex_index = 1:leg_params.num_vertices
         %vertex_index is the label of the current vertex
-        %your code here
+        va = leg_params.link_to_vertex_list(i,1);
+        vb = leg_params.link_to_vertex_list(i,2);
+        xa = vertex_coords(2*va-1);
+        ya = vertex_coords(2*va);
+        xb = vertex_coords(2*vb-1);
+        yb = vertex_coords(2*vb);
         %dot_x and dot_y should both be scalars
         %specifically the x and y coordinates of the corresponding vertex
-        dot_x = %your code here
-        dot_y = %your code here
+        dot_x = xa
+        dot_y = ya
         set(leg_drawing.vertices{vertex_index},'xdata',dot_x,'ydata',dot_y);
     end
     %your code here
