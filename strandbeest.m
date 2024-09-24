@@ -30,3 +30,27 @@ leg_params.link_lengths = ...
 65.7,... %link 9 length
 49.0 ... %link 10 length
 ];
+
+%length of crank shaft
+leg_params.crank_length = 15.0;
+%fixed position coords of vertex 0
+leg_params.vertex_pos0 = [0;0];
+%fixed position coords of vertex 2
+leg_params.vertex_pos2 = [-38.0;-7.8];
+
+
+%column vector of initial guesses
+%for each vertex location.
+%in form: [x1;y1;x2;y2;...;xn;yn]
+vertex_guess_coords = [...
+[ 0; 50];... %vertex 1 guess
+[ -50; 0];... %vertex 2 guess
+[ -50; 50];... %vertex 3 guess
+[-100; 0];... %vertex 4 guess
+[-100; -50];... %vertex 5 guess
+[ -50; -50];... %vertex 6 guess
+[ -50; -100]... %vertex 7 guess
+];
+
+vertex_coords_root = compute_coords(vertex_guess_coords, leg_params, 0)
+leg_drawing = initialize_leg_drawing(leg_params)

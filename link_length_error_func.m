@@ -19,17 +19,16 @@
 % where (xa,ya) and (xb,yb) are the coordinates of the vertices that
 % are connected by the ith link, and d_i is the length of the ith link
 function length_errors = link_length_error_func(vertex_coords, leg_params)
-    length_errors = [];
+    length_errors = ones((length(leg_params.num_linkages)),1);
     for i = 1:leg_params.num_linkages
         va = leg_params.link_to_vertex_list(i,1);
         vb = leg_params.link_to_vertex_list(i,2);
         xa = vertex_coords(2*va-1);
         ya = vertex_coords(2*va);
         xb = vertex_coords(2*vb-1);
-        yb = vertec_coords(2*vb);
+        yb = vertex_coords(2*vb);
         d_i = leg_params.link_lengths(i);
-        length_errors(i) = (xb-xa)^2 + (yb-ya)^2 - d_i^2 ;
+        length_errors(i,1) = (xb-xa)^2 + (yb-ya)^2 - d_i^2;
     end
-
-
+%     length_errors = length_errors
 end
