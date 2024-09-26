@@ -10,6 +10,7 @@
 % to a plot of one of the vertices in the linkage
 function update_leg_drawing(vertex_coords, leg_drawing, leg_params)
     %iterate through each link, and update corresponding link plot
+    axis equal;
     for linkage_index = 1:leg_params.num_linkages
         %linkage_index is the label of the current link
         va = leg_params.link_to_vertex_list(linkage_index, 1);
