@@ -54,3 +54,5 @@ vertex_guess_coords = [...
 
 vertex_coords_root = compute_coords(vertex_guess_coords, leg_params, 0)
 leg_drawing = initialize_leg_drawing(leg_params)
+
+update_leg_drawing(vertex_coords_root, leg_drawing, leg_params)
