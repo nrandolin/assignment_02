@@ -52,7 +52,11 @@ vertex_guess_coords = [...
 [ -50; -100]... %vertex 7 guess
 ];
 
-vertex_coords_root = compute_coords(vertex_guess_coords, leg_params, 0)
-leg_drawing = initialize_leg_drawing(leg_params)
-
-update_leg_drawing(vertex_coords_root, leg_drawing, leg_params)
+for theta = 0:pi/16:8*pi
+    vertex_coords_root = compute_coords(vertex_guess_coords, leg_params, theta);
+    leg_drawing = initialize_leg_drawing(leg_params);
+    update_leg_drawing(vertex_coords_root, leg_drawing, leg_params);
+    drawnow;
+    hold off
+    clf
+end
