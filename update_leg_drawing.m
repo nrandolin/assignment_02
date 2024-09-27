@@ -44,7 +44,17 @@ function update_leg_drawing(vertex_coords, leg_drawing, leg_params)
     %your code here
     %crank_x and crank_y should both be two element arrays
     %containing the x and y coordinates of the line segment describing the crank
-    crank_x = [vertex_coords(11), vertex_coords(13)];
-    crank_y = [vertex_coords(12), vertex_coords(14)];
-    set(leg_drawing.crank,'xdata',crank_x,'ydata',crank_y, "Color", "green");
+    %crank_x = [vertex_coords(11), vertex_coords(13)];
+    %crank_y = [vertex_coords(12), vertex_coords(14)];
+    crank_x = [0, vertex_coords(1)];
+    crank_y = [0, vertex_coords(2)];
+    set(leg_drawing.crank,'xdata',crank_x,'ydata',crank_y);
+    
+    %trace crank path
+    hold on
+    plot(vertex_coords(1), vertex_coords(2), 'o', 'MarkerFaceColor', 'b', 'MarkerSize', 3, 'MarkerEdgeColor', 'b')
+
+    %trace leg path
+    hold on
+    plot(vertex_coords(13), vertex_coords(14), 'o', 'MarkerFaceColor', 'm', 'MarkerSize', 3, 'MarkerEdgeColor', 'm')
 end
