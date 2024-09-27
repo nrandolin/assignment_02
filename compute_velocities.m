@@ -11,9 +11,9 @@ function dVdtheta = compute_velocities(vertex_coords, leg_params, theta)
     link_length_wrap = @(vertex_coords) link_length_error_func(vertex_coords, leg_params);
     approx_jacob =  approximate_jacobian(link_length_wrap, vertex_coords);
     little_jacob = [eye(4), zeros(4,10)];
-    full_jacob = [little_jacob; approx_jacob];
+    full_jacob = [little_jacob; approx_jacob]
 
-    %set zero vecotr
+    %set zero vector
     b = zeros(length(vertex_coords), 1); 
     b(1) = -leg_params.crank_length*sin(theta); 
     b(2) = leg_params.crank_length*cos(theta);

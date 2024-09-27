@@ -57,10 +57,12 @@ clf
 leg_drawing = initialize_leg_drawing(leg_params);
 
 
-for theta = 0:pi/16:8*pi
+for theta = 0:pi/16:2*pi
     vertex_coords_root = compute_coords(vertex_guess_coords, leg_params, theta);
     dVdtheta = compute_velocities(vertex_coords_root, leg_params, theta);
-    update_leg_drawing(vertex_coords_root, dVdtheta, leg_drawing, leg_params);
+    dVdtheta_num = num_compute_velocities(vertex_guess_coords, leg_params, theta);
+    update_leg_drawing(vertex_coords_root, dVdtheta, dVdtheta_num, leg_drawing, leg_params)
+
     drawnow;
 end
 

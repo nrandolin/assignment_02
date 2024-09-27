@@ -8,7 +8,7 @@
 % leg_drawing.crank is a plot of the crank link
 % leg_drawing.vertices is a cell array, where each element corresponds
 % to a plot of one of the vertices in the linkage
-function update_leg_drawing(vertex_coords, dVdtheta, leg_drawing, leg_params)
+function update_leg_drawing(vertex_coords, dVdtheta, dVdtheta_num, leg_drawing, leg_params)
     %iterate through each link, and update corresponding link plot
     axis equal; axis([-120 50 -120 50])
 
@@ -46,12 +46,16 @@ function update_leg_drawing(vertex_coords, dVdtheta, leg_drawing, leg_params)
 
     % plot tip velocity vector
     hold on
-    quiver(vertex_coords(end-1), vertex_coords(end), vertex_coords(end-1) + dVdtheta(end-1), vertex_coords(end) + dVdtheta(end))
-    
+    x_point = vertex_coords(end-1);
+    y_point = vertex_coords(end);
+    x_delta = dVdtheta(end-1);
+    y_delta = dVdtheta(end);
+    quiver(x_point, y_point, x_point + x_delta, y_point + y_delta)
+    quiver(x_point, y_point, x_point + dVdtheta_num(end-1), y_point + dVdtheta_num(end))
     %trace crank path
     plot(vertex_coords(1), vertex_coords(2), 'o', 'MarkerFaceColor', 'b', 'MarkerSize', 3, 'MarkerEdgeColor', 'b')
 
     %trace leg path
     hold on
-    plot(vertex_coords(13), vertex_coords(14), 'o', 'MarkerFaceColor', 'm', 'MarkerSize', 3, 'MarkerEdgeColor', 'm')
+    plot(vertex_coords(end-1), vertex_coords(end), 'o', 'MarkerFaceColor', 'm', 'MarkerSize', 3, 'MarkerEdgeColor', 'm')
 end
