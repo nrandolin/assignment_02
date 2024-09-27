@@ -46,7 +46,7 @@ function update_leg_drawing(vertex_coords, dVdtheta, leg_drawing, leg_params)
 
     % plot tip velocity vector
     hold on
-    quiver(crank_x(end), crank_y(end), crank_x(end) + dVdtheta(end-1), crank_y(end) + dVdtheta(end))
+    quiver(vertex_coords(end-1), vertex_coords(end), vertex_coords(end-1) + dVdtheta(end-1), vertex_coords(end) + dVdtheta(end))
     
     %trace crank path
     plot(vertex_coords(1), vertex_coords(2), 'o', 'MarkerFaceColor', 'b', 'MarkerSize', 3, 'MarkerEdgeColor', 'b')
