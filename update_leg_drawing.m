@@ -30,11 +30,8 @@ function update_leg_drawing(vertex_coords, leg_drawing, leg_params)
     for vertex_index = 1:leg_params.num_vertices
         %vertex_index is the label of the current vertex
         va = leg_params.link_to_vertex_list(vertex_index, 1);
-        vb = leg_params.link_to_vertex_list(vertex_index, 2);
         xa = vertex_coords(2*va-1);
         ya = vertex_coords(2*va);
-        xb = vertex_coords(2*vb-1);
-        yb = vertex_coords(2*vb);
         %dot_x and dot_y should both be scalars
         %specifically the x and y coordinates of the corresponding vertex
         dot_x = xa;
@@ -44,11 +41,9 @@ function update_leg_drawing(vertex_coords, leg_drawing, leg_params)
     %your code here
     %crank_x and crank_y should both be two element arrays
     %containing the x and y coordinates of the line segment describing the crank
-    %crank_x = [vertex_coords(11), vertex_coords(13)];
-    %crank_y = [vertex_coords(12), vertex_coords(14)];
     crank_x = [0, vertex_coords(1)];
     crank_y = [0, vertex_coords(2)];
-    set(leg_drawing.crank,'xdata',crank_x,'ydata',crank_y);
+    set(leg_drawing.crank,'xdata',crank_x,'ydata',crank_y, 'Color', 'b');
     
     %trace crank path
     hold on
