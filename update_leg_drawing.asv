@@ -42,11 +42,13 @@ function update_leg_drawing(vertex_coords, dVdtheta, leg_drawing, leg_params)
     %containing the x and y coordinates of the line segment describing the crank
     crank_x = [0, vertex_coords(1)];
     crank_y = [0, vertex_coords(2)];
+    velocity_x = [crank_x(end), crank_x(end) + dVdtheta(end-1)];
+    velocity_y = [crank_y(end), , crank_y(end) + dVdtheta(end)];
     set(leg_drawing.crank,'xdata',crank_x,'ydata',crank_y, 'Color', 'b');
 
     % plot tip velocity vector
     hold on
-    quiver(crank_x(end), crank_y(end), crank_x(end) + dVdtheta(end-1), crank_y(end) + dVdtheta(end))
+    quiver(crank_x(end), crank_y(end), rank_x(end) + dVdtheta(end-1), rank_y(end) + dVdtheta(end))
     
     %trace crank path
     plot(vertex_coords(1), vertex_coords(2), 'o', 'MarkerFaceColor', 'b', 'MarkerSize', 3, 'MarkerEdgeColor', 'b')
