@@ -55,34 +55,24 @@ vertex_guess_coords = [...
 figure(1)
 clf
 leg_drawing = initialize_leg_drawing(leg_params);
-velx = [];
-vel_numx = [];
-vely = [];
-vel_numy = [];
+vel = [];
+vel_num = [];
 
 for theta = 0:pi/12:2*pi
     vertex_coords_root = compute_coords(vertex_guess_coords, leg_params, theta);
     dVdtheta = compute_velocities(vertex_coords_root, leg_params, theta);
     dVdtheta_num = num_compute_velocities(vertex_guess_coords, leg_params, theta);
-    velx = [velx, dVdtheta(end-1)];
-    vel_numx = [vel_numx, dVdtheta_num(end-1)];
-    vely = [vely, dVdtheta(end)];
-    vel_numy = [vel_numy, dVdtheta_num(end)];
+    vel = [vel, dVdtheta(end-1)];
+    vel_num = [vel_num, dVdtheta_num(end-1)];
     update_leg_drawing(vertex_coords_root, dVdtheta, dVdtheta_num, leg_drawing, leg_params, theta)
 
     drawnow;
 end
 theta = 0:pi/12:2*pi;
 
-figure(2)
+figure(20)
 clf
 hold on
-plot(theta, velx, 'ro')
-plot(theta, vel_numx, 'bo')
-
-figure(3)
-clf
-hold on
-plot(theta, vely, 'ro')
-plot(theta, vel_numy, 'bo')
+plot(theta, vel, 'ro')
+plot(theta, vel_num, 'bo')
 

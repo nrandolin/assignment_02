@@ -8,7 +8,7 @@
 % leg_drawing.crank is a plot of the crank link
 % leg_drawing.vertices is a cell array, where each element corresponds
 % to a plot of one of the vertices in the linkage
-function update_leg_drawing(vertex_coords, dVdtheta, dVdtheta_num, leg_drawing, leg_params)
+function update_leg_drawing(vertex_coords, dVdtheta, dVdtheta_num, leg_drawing, leg_params, theta)
     %iterate through each link, and update corresponding link plot
     axis equal; axis([-120 50 -120 50])
 
@@ -50,12 +50,17 @@ function update_leg_drawing(vertex_coords, dVdtheta, dVdtheta_num, leg_drawing, 
     y_point = vertex_coords(end);
     x_delta = dVdtheta(end-1);
     y_delta = dVdtheta(end);
-    quiver(x_point, y_point, x_point + x_delta, y_point + y_delta)
-    quiver(x_point, y_point, x_point + dVdtheta_num(end-1), y_point + dVdtheta_num(end))
+    unit_velx = x_delta/sqrt(x_delta^2 + y_delta ^2);
+    unit_vely = y_delta/sqrt(x_delta^2 + y_delta ^2);
+    scale = 10;
+    plot([x_point, x_point + unit_velx*scale], [y_point, y_point+unit_vely*scale], 'g', 'LineWidth', 3);
+    % quiver(x_point, y_point, x_point + x_delta, y_point + y_delta)
+    % quiver(x_point, y_point, x_point + dVdtheta_num(end-1), y_point + dVdtheta_num(end))
     %trace crank path
     plot(vertex_coords(1), vertex_coords(2), 'o', 'MarkerFaceColor', 'b', 'MarkerSize', 3, 'MarkerEdgeColor', 'b')
 
     %trace leg path
     hold on
     plot(vertex_coords(end-1), vertex_coords(end), 'o', 'MarkerFaceColor', 'm', 'MarkerSize', 3, 'MarkerEdgeColor', 'm')
+
 end
