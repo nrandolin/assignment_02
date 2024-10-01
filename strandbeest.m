@@ -1,3 +1,6 @@
+clear
+clc
+
 %initialize leg_params structure
 leg_params = struct();
 %number of vertices in linkage
@@ -60,7 +63,7 @@ vel_numx = [];
 vely = [];
 vel_numy = [];
 
-for theta = 0:pi/12:2*pi
+for theta = 0:pi/32:2*pi
     vertex_coords_root = compute_coords(vertex_guess_coords, leg_params, theta);
     dVdtheta = compute_velocities(vertex_coords_root, leg_params, theta);
     dVdtheta_num = num_compute_velocities(vertex_guess_coords, leg_params, theta);
@@ -72,17 +75,23 @@ for theta = 0:pi/12:2*pi
 
     drawnow;
 end
-theta = 0:pi/12:2*pi;
+theta = 0:pi/32:2*pi;
 
 figure(2)
 clf
 hold on
-plot(theta, velx, 'ro')
-plot(theta, vel_numx, 'bo')
+plot(theta, velx, 'ro', 'MarkerSize', 7)
+plot(theta, vel_numx, '*b', 'MarkerSize',5)
+xlabel("Theta (radians)")
+ylabel("Velocity (m/s)")
+title("X Velocity vs Theta")
 
 figure(3)
 clf
 hold on
-plot(theta, vely, 'ro')
-plot(theta, vel_numy, 'bo')
+plot(theta, vely, 'ro', 'MarkerSize', 7)
+plot(theta, vel_numy, '*b', 'MarkerSize',5)
+xlabel("Theta (radians)")
+ylabel("Velocity (m/s)")
+title("Y Velocity vs Theta")
 

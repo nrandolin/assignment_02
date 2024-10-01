@@ -14,12 +14,12 @@ function dVdtheta_num = num_compute_velocities(vertex_coords, leg_params, theta)
     % approx_jacob =  approximate_jacobian(link_length_wrap, vertex_coords);
     % little_jacob = [eye(4), zeros(4,10)];
     % full_jacob = [little_jacob; approx_jacob];
-    vertex_coords_num = @(theta) compute_coords(vertex_coords, leg_params, theta);
-    delta_theta = pi/32;
-    b = vertex_coords_num(theta+delta_theta);
+    % 
+    % delta_theta = pi/32;
+    % b = vertex_coords_num(theta+delta_theta);
 
-    
-    dVdtheta_num = (b-vertex_coords)/delta_theta;
+    vertex_coords_num = @(theta) compute_coords(vertex_coords, leg_params, theta);
+    dVdtheta_num =  approximate_jacobian(vertex_coords_num, theta);
 
 
 end
