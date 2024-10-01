@@ -53,14 +53,14 @@ function update_leg_drawing(vertex_coords, dVdtheta, dVdtheta_num, leg_drawing, 
     unit_velx = x_delta/sqrt(x_delta^2 + y_delta ^2);
     unit_vely = y_delta/sqrt(x_delta^2 + y_delta ^2);
     scale = 10;
-    set(leg_drawing.tip_vector, 'xdata',[x_point, x_point + unit_velx*scale], 'ydata', [y_point, y_point+unit_vely*scale]);
+    set([x_point, x_point + unit_velx*scale], [y_point, y_point+unit_vely*scale]);
     % quiver(x_point, y_point, x_point + x_delta, y_point + y_delta)
     % quiver(x_point, y_point, x_point + dVdtheta_num(end-1), y_point + dVdtheta_num(end))
     %trace crank path
-    set(leg_drawing.crank_point, 'xdata',vertex_coords(1), 'ydata', vertex_coords(2), 'marker', 'o', 'MarkerFaceColor', 'b', 'MarkerSize', 3, 'MarkerEdgeColor', 'b')
+    plot(vertex_coords(1), vertex_coords(2), 'o', 'MarkerFaceColor', 'b', 'MarkerSize', 3, 'MarkerEdgeColor', 'b')
 
     %trace leg path
     hold on
-    
+    plot(vertex_coords(end-1), vertex_coords(end), 'o', 'MarkerFaceColor', 'm', 'MarkerSize', 3, 'MarkerEdgeColor', 'm')
 
 end
