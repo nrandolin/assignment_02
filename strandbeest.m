@@ -1,6 +1,6 @@
 clear
 clc
-
+%% LEG PARAMS
 %initialize leg_params structure
 leg_params = struct();
 %number of vertices in linkage
@@ -55,6 +55,9 @@ vertex_guess_coords = [...
 [ -50; -100]... %vertex 7 guess
 ];
 
+%% STRANDBEEST FIGURE
+
+% initialize figure
 figure(1)
 clf
 leg_drawing = initialize_leg_drawing(leg_params);
@@ -63,6 +66,7 @@ vel_numx = [];
 vely = [];
 vel_numy = [];
 
+% draw strandbeest as crank shaft turns
 for theta = 0:pi/32:2*pi
     vertex_coords_root = compute_coords(vertex_guess_coords, leg_params, theta);
     dVdtheta = compute_velocities(vertex_coords_root, leg_params, theta);
@@ -77,6 +81,8 @@ for theta = 0:pi/32:2*pi
 end
 theta = 0:pi/32:2*pi;
 
+% plot the x velocity against theta for the two different velocity
+% computations
 figure(2)
 clf
 hold on
@@ -86,6 +92,8 @@ xlabel("Theta (radians)")
 ylabel("Velocity (m/s)")
 title("X Velocity vs Theta")
 
+% plot the y velocity against theta for the two different velocity
+% computations
 figure(3)
 clf
 hold on
