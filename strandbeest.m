@@ -58,7 +58,18 @@ vertex_guess_coords = [...
 %% STRANDBEEST FIGURE
 
 % initialize figure
-figure(1)
+% Download path for egg animation
+mypath1 = 'C:\Users\ldao\Downloads\';
+fname='strandbeest_animation.avi';
+input_fname = [mypath1,fname];
+
+% create a videowriter, which will write frames to the animation file
+writerObj = VideoWriter(input_fname);
+
+% must call open before writing any frames
+open(writerObj);
+
+fig1 = figure(1);
 clf
 hold on
 leg_drawing = initialize_leg_drawing(leg_params);
@@ -89,7 +100,12 @@ for step = theta
     vel_numy = [vel_numy, dVdtheta_num(end)];
     update_leg_drawing(vertex_coords_root, dVdtheta, dVdtheta_num, leg_drawing, leg_params, step)
     drawnow;
+    current_frame = getframe(fig1);
+
+    % write the frame to the video
+    writeVideo(writerObj,current_frame)
 end
+close(writerObj);
 
 plots_on = false;
 if plots_on == true
@@ -118,3 +134,4 @@ if plots_on == true
     legend("Linear Algebra Computation", "Numeric Computation")
     title("Y Velocity vs Theta")
 end
+
