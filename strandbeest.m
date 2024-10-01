@@ -90,6 +90,7 @@ plot(theta, velx, 'ro', 'MarkerSize', 7)
 plot(theta, vel_numx, '*b', 'MarkerSize',5)
 xlabel("Theta (radians)")
 ylabel("Velocity (m/s)")
+legend("Linear Algebra Computation", "Numeric Computation")
 title("X Velocity vs Theta")
 
 % plot the y velocity against theta for the two different velocity
@@ -101,5 +102,6 @@ plot(theta, vely, 'ro', 'MarkerSize', 7)
 plot(theta, vel_numy, '*b', 'MarkerSize',5)
 xlabel("Theta (radians)")
 ylabel("Velocity (m/s)")
+legend("Linear Algebra Computation", "Numeric Computation")
 title("Y Velocity vs Theta")
 
