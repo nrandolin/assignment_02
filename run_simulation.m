@@ -3,6 +3,19 @@
 %t_c is the predicted collision time
 function run_simulation(theta,t_c)
     %create the plot window, set the axes size, and add labels
+    % initialize figure
+    % Download path for egg animation
+    mypath1 = 'C:\Users\ldao\Downloads\';
+    fname='projectile_animation.avi';
+    input_fname = [mypath1,fname];
+    
+    % create a videowriter, which will write frames to the animation file
+    writerObj = VideoWriter(input_fname);
+    
+    % must call open before writing any frames
+    open(writerObj);
+    
+    fig1 = figure(1);
     hold on;
     axis equal; axis square;
     axis([0,50,0,50])
@@ -37,5 +50,10 @@ function run_simulation(theta,t_c)
         set(traj_line_targ,'xdata',V_list_targ(1,i:end),'ydata',V_list_targ(2,i:end));
         %show updated plots
         drawnow;
+        current_frame = getframe(fig1);
+    
+        % write the frame to the video
+        writeVideo(writerObj,current_frame)
     end
+    close(writerObj);
 end
